@@ -1,14 +1,24 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import Header from "../containers/Header";
+import { createAppContainer } from "react-navigation";
+import { createBottomTabNavigator } from "react-navigation-tabs";
+import AboutStack from "../stacks/AboutStack";
+import HomeStack from "../stacks/HomeStack";
 
-export default function AppNavigator() {
-  return (
-    <View>
-      <Header />
-      <Text></Text>
-    </View>
-  );
-}
+const TabNavigator = createBottomTabNavigator(
+  {
+    Home: HomeStack,
+    About: AboutStack,
+  },
+  {
+    tabBarOptions: {
+      labelStyle: {
+        fontSize: 18,
+        fontWeight: "600",
+        paddingBottom: 12,
+        flexDirection: "row",
+      },
+      activeTintColor: "darkslateblue",
+    },
+  }
+);
 
-const styles = StyleSheet.create({});
+export default createAppContainer(TabNavigator);
