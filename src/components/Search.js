@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, View, TouchableOpacity, Alert } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Alert,
+  Keyboard,
+} from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { TextInput } from "react-native-paper";
 
@@ -15,6 +21,7 @@ export default function Search({ searchQuery }) {
       ]);
     } else {
       searchQuery(text);
+      Keyboard.dismiss();
     }
   };
 
@@ -28,7 +35,7 @@ export default function Search({ searchQuery }) {
         style={styles.input}
       />
       <TouchableOpacity style={styles.button} onPress={handlePress}>
-        <FontAwesome name="plus" size={25} color="#eee" />
+        <FontAwesome name="search" size={25} color="#eee" />
       </TouchableOpacity>
     </View>
   );

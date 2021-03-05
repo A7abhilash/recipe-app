@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { ActivityIndicator, Chip, Colors } from "react-native-paper";
 import RecipeCard from "../components/RecipeCard";
@@ -7,12 +7,13 @@ import Search from "../components/Search";
 import { APP_ID, APP_KEY } from "./../keys";
 
 export default function Home({ navigation }) {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [query, setQuery] = useState("pizza");
   const [list, setList] = useState([]);
 
   useEffect(() => {
+    console.log("Called");
     setList([]);
     setLoading(true);
     setError(false);
@@ -36,7 +37,7 @@ export default function Home({ navigation }) {
   }, [query]);
 
   const pressHandler = (item) => {
-    // console.log(item.label);
+    console.log(item.label);
     navigation.navigate("Complete Recipe", { item });
   };
 
@@ -57,14 +58,23 @@ export default function Home({ navigation }) {
           <FlatList
             keyExtractor={(item) => item.recipe.image}
             data={list}
+            style={styles.list}
             renderItem={({ item }) => (
-              <TouchableOpacity onPress={pressHandler}>
+              <TouchableOpacity onPress={() => pressHandler(item.recipe)}>
                 <RecipeCard item={item.recipe} />
               </TouchableOpacity>
+              // <Text>{item.label}</Text>
             )}
-            style={styles.list}
           />
         ) : (
+          // <ScrollView>
+          //   {list.map((item) => (
+          //     <TouchableOpacity onPress={pressHandler} key={item.image}>
+          //       <RecipeCard item={item} />
+          //     </TouchableOpacity>
+          //     // <Text key={item.image}>{item.label}</Text>
+          //   ))}
+          // </ScrollView>
           <Chip icon="cancel" selectedColor="red" textStyle={styles.errorText}>
             No recipe found...
           </Chip>
@@ -83,7 +93,8 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   list: {
-    flex: 1,
-    flexDirection: "row",
+    // flex: 1,
+    // flexDirection: "row",
+    marginBottom: 100,
   },
 });
