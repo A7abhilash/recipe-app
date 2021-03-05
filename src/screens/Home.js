@@ -13,7 +13,6 @@ export default function Home({ navigation }) {
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    console.log("Called");
     setList([]);
     setLoading(true);
     setError(false);
@@ -40,8 +39,6 @@ export default function Home({ navigation }) {
     // console.log(item.label);
     navigation.navigate("Complete Recipe", { item });
   };
-
-  console.log(list[0]);
 
   return (
     <View style={styles.container}>
@@ -77,6 +74,7 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     margin: 10,
+    flex: 1,
   },
   errorText: {
     textAlign: "center",
@@ -84,8 +82,6 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   list: {
-    // flex: 1,
-    // flexDirection: "row",
-    marginBottom: 100,
+    flex: 1,
   },
 });

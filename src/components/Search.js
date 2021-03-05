@@ -10,7 +10,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { TextInput } from "react-native-paper";
 
 export default function Search({ searchQuery }) {
-  const [text, setText] = useState("");
+  const [text, setText] = useState("Pizza");
 
   const handlePress = () => {
     if (!text) {
