@@ -11,6 +11,9 @@ const AboutStack = createStackNavigator(
       navigationOptions: ({ navigation }) => {
         return {
           headerTitle: () => <Header navigation={navigation} title="Home" />,
+          headerTitleContainerStyle: {
+            paddingBottom: 25,
+          },
         };
       },
     },
