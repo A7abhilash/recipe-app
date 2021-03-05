@@ -1,12 +1,12 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { Appbar } from "react-native-paper";
 
 export default function Header() {
   return (
-    <Appbar.Header style={styles.appbar}>
+    <View style={styles.appbar}>
       <Appbar.Content title="Recipe App" titleStyle={styles.headerText} />
-    </Appbar.Header>
+    </View>
   );
 }
 
