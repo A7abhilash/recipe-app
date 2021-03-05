@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   labelTitle: {
-    fontWeight: "600",
+    fontWeight: "bold",
     marginRight: 10,
   },
   label: {

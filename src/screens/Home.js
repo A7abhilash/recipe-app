@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { ActivityIndicator, Chip, Colors } from "react-native-paper";
 import RecipeCard from "../components/RecipeCard";
@@ -37,7 +37,7 @@ export default function Home({ navigation }) {
   }, [query]);
 
   const pressHandler = (item) => {
-    console.log(item.label);
+    // console.log(item.label);
     navigation.navigate("Complete Recipe", { item });
   };
 
@@ -63,18 +63,9 @@ export default function Home({ navigation }) {
               <TouchableOpacity onPress={() => pressHandler(item.recipe)}>
                 <RecipeCard item={item.recipe} />
               </TouchableOpacity>
-              // <Text>{item.label}</Text>
             )}
           />
         ) : (
-          // <ScrollView>
-          //   {list.map((item) => (
-          //     <TouchableOpacity onPress={pressHandler} key={item.image}>
-          //       <RecipeCard item={item} />
-          //     </TouchableOpacity>
-          //     // <Text key={item.image}>{item.label}</Text>
-          //   ))}
-          // </ScrollView>
           <Chip icon="cancel" selectedColor="red" textStyle={styles.errorText}>
             No recipe found...
           </Chip>
