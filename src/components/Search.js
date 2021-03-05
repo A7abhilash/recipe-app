@@ -22,7 +22,7 @@ export default function Search({ searchQuery }) {
     <View style={styles.inputContainer}>
       <TextInput
         // placeholder="Search something..."
-        label="Search something..."
+        label="Search food..."
         onChangeText={(val) => setText(val)}
         value={text}
         style={styles.input}
@@ -36,7 +36,8 @@ export default function Search({ searchQuery }) {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    margin: 10,
+    // marginHorizontal: 10,
+    marginVertical: 20,
     flexDirection: "row",
     alignItems: "center",
   },

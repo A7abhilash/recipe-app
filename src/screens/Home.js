@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { ActivityIndicator, Chip, Colors } from "react-native-paper";
+import RecipeCard from "../components/RecipeCard";
 import Search from "../components/Search";
 import { APP_ID, APP_KEY } from "./../keys";
 
@@ -10,18 +13,62 @@ export default function Home({ navigation }) {
   const [list, setList] = useState([]);
 
   useEffect(() => {
+    setList([]);
+    setLoading(true);
+    setError(false);
     fetch(
       `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
+        if (data) {
+          setList(data.hits);
+        }
+      })
+      .catch((err) => {
+        // console.log(err);
+        setError(true);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [query]);
+
+  const pressHandler = (item) => {
+    // console.log(item.label);
+    navigation.navigate("Complete Recipe", { item });
+  };
+
+  console.log(list[0]);
 
   return (
     <View style={styles.container}>
       <Search searchQuery={setQuery} />
+      {loading && <ActivityIndicator animating={true} color={Colors.red800} />}
+      {error && (
+        <Chip icon="cancel" selectedColor="red" textStyle={styles.errorText}>
+          Error fetching data...
+        </Chip>
+      )}
+      {!loading &&
+        !error &&
+        (list.length ? (
+          <FlatList
+            keyExtractor={(item) => item.recipe.image}
+            data={list}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={pressHandler}>
+                <RecipeCard item={item.recipe} />
+              </TouchableOpacity>
+            )}
+            style={styles.list}
+          />
+        ) : (
+          <Chip icon="cancel" selectedColor="red" textStyle={styles.errorText}>
+            No recipe found...
+          </Chip>
+        ))}
     </View>
   );
 }
@@ -29,5 +76,14 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     margin: 10,
+  },
+  errorText: {
+    textAlign: "center",
+    fontSize: 18,
+    fontWeight: "500",
+  },
+  list: {
+    flex: 1,
+    flexDirection: "row",
   },
 });
