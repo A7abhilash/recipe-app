@@ -12,7 +12,7 @@
 </div>
 
 <div align="center">
-<img src="assets/sreenshots/Screenshot_1619058780.png" style="border-radius:5px;" alt="Home" height="200">
-<img src="assets/sreenshots/Screenshot_1619058845.png" style="border-radius:5px;" alt="Home" height="200">
-<img src="assets/sreenshots/Screenshot_1619058800.png" style="border-radius:5px;" alt="Details" height="200">
+<img src="assets/sreenshots/Screenshot_1619058780.png" style="border-radius:5px;" alt="Home" height="400">
+<img src="assets/sreenshots/Screenshot_1619058845.png" style="border-radius:5px;" alt="Home" height="400">
+<img src="assets/sreenshots/Screenshot_1619058800.png" style="border-radius:5px;" alt="Details" height="400">
 </div>
