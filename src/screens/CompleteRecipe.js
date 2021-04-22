@@ -15,7 +15,7 @@ export default function CompleteRecipe({ navigation }) {
   // console.log(item);
 
   const pressHandler = (url) => {
-    console.log(url);
+    // console.log(url);
     Linking.openURL(url).catch(() => {
       Alert.alert("Error", "An error occurred during open this link...", [
         {
